@@ -1,0 +1,22 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class itemCollect : MonoBehaviour
+{
+    private int X = 0;
+
+    [SerializeReference] private Text cheryText;// untuk memasukan text yang sudah dibuat 
+    [SerializeField] private AudioSource soundEffectCollect;
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("X"))// jika player bertabrakan dengan object yang memiliki tag x maka akan menghancurkan object tersebut dan menambah nilainya menjadi +1
+        {
+            soundEffectCollect.Play();
+            Destroy(collision.gameObject);
+            X++;
+            cheryText.text = "X" + X;
+        }
+    }
+}
